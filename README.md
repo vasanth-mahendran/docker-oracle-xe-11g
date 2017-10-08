@@ -3,41 +3,40 @@ docker-oracle-xe-11g
 
 Oracle Express Edition 11g Release 2 on Ubuntu 16.04 LTS
 
-This **Dockerfile** is a [trusted build](https://registry.hub.docker.com/u/wnameless/oracle-xe-11g/) of [Docker Registry](https://registry.hub.docker.com/).
+### How to use this
+```
+git clone https://github.com/vasanth-mahendran/docker-oracle-xe-11g.git
 
-### Installation(with Ubuntu 16.04)
-```
-docker pull wnameless/oracle-xe-11g
-```
+cd docker-oracle-xe-11g
 
-### Installation(with older Ubuntu 14.04.4)
-```
-docker pull wnameless/oracle-xe-11g:14.04.4
-```
+Place your dumps under dumps folder inside docker-oracle-xe-11g
 
+docker build .
+
+```
 Run with 22 and 1521 ports opened:
 ```
-docker run -d -p 49160:22 -p 49161:1521 wnameless/oracle-xe-11g
+docker run -d -p 49160:22 -p 49161:1521 docker-oracle-xe-11g
 ```
 
 Run this, if you want the database to be connected remotely:
 ```
-docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
+docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_ALLOW_REMOTE=true docker-oracle-xe-11g
 ```
 
 By default, the passeord verification is disable(password never expired). If you want it back, run this:
 ```
-docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_PASSWORD_VERIFY=true wnameless/oracle-xe-11g
+docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_PASSWORD_VERIFY=true docker-oracle-xe-11g
 ```
 
 For performance concern, you may want to disable the disk asynch IO:
 ```
-docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_DISABLE_ASYNCH_IO=true wnameless/oracle-xe-11g
+docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_DISABLE_ASYNCH_IO=true docker-oracle-xe-11g
 ```
 
 For XDB user, run this:
 ```
-docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_ENABLE_XDB=true wnameless/oracle-xe-11g
+docker run -d -p 49160:22 -p 49161:1521 -e ORACLE_ENABLE_XDB=true docker-oracle-xe-11g
 ```
 ```
 # Login http://localhost:8080 with following credential:
@@ -63,12 +62,4 @@ Login by SSH
 ```
 ssh root@localhost -p 49160
 password: admin
-```
-
-Support custom DB Initialization
-```
-# Dockerfile
-FROM wnameless/oracle-xe-11g
-
-ADD init.sql /docker-entrypoint-initdb.d/
 ```
