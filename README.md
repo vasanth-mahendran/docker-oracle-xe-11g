@@ -9,8 +9,6 @@ git clone https://github.com/vasanth-mahendran/docker-oracle-xe-11g.git
 
 cd docker-oracle-xe-11g
 
-Place your dumps under dumps folder inside docker-oracle-xe-11g
-
 docker build .
 
 ```
