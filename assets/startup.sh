@@ -16,9 +16,10 @@ export PATH=$ORACLE_HOME/bin:$PATH
 export ORACLE_SID=XE
 
 if ! [ "$ORACLE_PASSWORD_VERIFY" = true ]; then
-  echo "ALTER PROFILE DEFAULT LIMIT PASSWORD_VERIFY_FUNCTION NULL;" | sqlplus -s SYSTEM/oracle
-  echo "alter profile DEFAULT limit password_life_time UNLIMITED;" | sqlplus -s SYSTEM/oracle
-  echo "alter user SYSTEM identified by oracle account unlock;" | sqlplus -s SYSTEM/oracle
+  echo "ALTER PROFILE DEFAULT LIMIT PASSWORD_VERIFY_FUNCTION NULL;" | sqlplus -s sys/system as sysdba
+  echo "alter profile DEFAULT limit password_life_time UNLIMITED;" | sqlplus -s sys/system as sysdba
+  echo "alter user SYSTEM identified by oracle account unlock;" | sqlplus -s sys/system as sysdba
+  echo "alter system set sec_case_sensitive_logon=false;" | sqlplus -s sys/system as sysdba
 fi
 
 if [ "$ORACLE_ENABLE_XDB" = true ]; then
