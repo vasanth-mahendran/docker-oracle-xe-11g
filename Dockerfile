@@ -12,7 +12,6 @@ RUN echo 'export PATH=$ORACLE_HOME/bin:$PATH' >> /etc/bash.bashrc
 RUN echo 'export ORACLE_SID=XE' >> /etc/bash.bashrc
 
 ADD assets /assets
-ADD dumps /dumps
 RUN /assets/setup.sh
 
 EXPOSE 22
