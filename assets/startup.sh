@@ -20,7 +20,7 @@ export ORACLE_SID=XE
 #  echo "alter profile DEFAULT limit password_life_time UNLIMITED;" | sqlplus -s sys/system as sysdba
 #  echo "alter user SYSTEM identified by oracle account unlock;" | sqlplus -s sys/system as sysdba
 #  echo "alter system set sec_case_sensitive_logon=false;" | sqlplus -s sys/system as sysdba
-fi
+#fi
 
 if [ "$ORACLE_ENABLE_XDB" = true ]; then
   echo "ALTER USER XDB ACCOUNT UNLOCK;" | sqlplus -s SYSTEM/oracle
