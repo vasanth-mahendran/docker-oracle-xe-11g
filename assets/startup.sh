@@ -15,12 +15,12 @@ export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
 export PATH=$ORACLE_HOME/bin:$PATH
 export ORACLE_SID=XE
 
-#if ! [ "$ORACLE_PASSWORD_VERIFY" = true ]; then
-#  echo "ALTER PROFILE DEFAULT LIMIT PASSWORD_VERIFY_FUNCTION NULL;" | sqlplus -s sys/system as sysdba
-#  echo "alter profile DEFAULT limit password_life_time UNLIMITED;" | sqlplus -s sys/system as sysdba
-#  echo "alter user SYSTEM identified by oracle account unlock;" | sqlplus -s sys/system as sysdba
-#  echo "alter system set sec_case_sensitive_logon=false;" | sqlplus -s sys/system as sysdba
-#fi
+if ! [ "$ORACLE_PASSWORD_VERIFY" = true ]; then
+  echo "ALTER PROFILE DEFAULT LIMIT PASSWORD_VERIFY_FUNCTION NULL;" | sqlplus -s ATGCORE/ATGCORE
+  echo "alter profile DEFAULT limit password_life_time UNLIMITED;" | sqlplus -s ATGCORE/ATGCORE
+  echo "alter user SYSTEM identified by oracle account unlock;" | sqlplus -s ATGCORE/ATGCORE
+  echo "alter system set sec_case_sensitive_logon=false;" | sqlplus -s ATGCORE/ATGCORE
+fi
 
 if [ "$ORACLE_ENABLE_XDB" = true ]; then
   echo "ALTER USER XDB ACCOUNT UNLOCK;" | sqlplus -s SYSTEM/oracle
