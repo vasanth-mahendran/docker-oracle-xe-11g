@@ -20,6 +20,10 @@ if ! [ "$ORACLE_PASSWORD_VERIFY" = true ]; then
   echo "alter profile DEFAULT limit password_life_time UNLIMITED;" | sqlplus -s ATGCORE/ATGCORE
   echo "alter user SYSTEM identified by oracle account unlock;" | sqlplus -s ATGCORE/ATGCORE
   echo "alter system set sec_case_sensitive_logon=false;" | sqlplus -s ATGCORE/ATGCORE
+  echo "alter system set processes = 150 scope = spfile;" | sqlplus -s ATGCORE/ATGCORE
+  echo "alter system set sessions = 300 scope = spfile;" | sqlplus -s ATGCORE/ATGCORE
+  echo "alter system set transactions = 330 scope = spfile;" | sqlplus -s ATGCORE/ATGCORE
+
 fi
 
 if [ "$ORACLE_ENABLE_XDB" = true ]; then
